@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <script type="text/javascript">  
+        function start() {  
+            this.progressInterval = setInterval(function(){  
+                pbClient.setValue(pbClient.getValue() + 20);  
+            }, 1000);  
+        }  
+  
+        function cancel() {  
+            clearInterval(this.progressInterval);  
+            pbClient.setValue(0);  
+        }  
+        function closeMsg() {  
+            alert('teste');
+           dlg1.hide();  
+        }  
+    </script>  
+
+    <h:body>
+<p:growl id="alerta6" life="0" />
+
+            <p:accordionPanel autoHeight="false">  
+                <p:tab title="A vista">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <f:facet name="header">
+                            <h:outputText value="Valor Total:R$ #{compraController.estoque.valor}"/>
+                        </f:facet>
+                        <h:outputText value="Total a vista"/><h:inputText id="valorVista" value="#{compraController.formaPagamento.valor}"/>                          
+                        <h:outputText value="Utilizar Veiculo Usado?"/><h:inputText id="valorCarroUsado" value="#{compraController.formaPagamento.valorCarroUsado}"/>                          
+
+
+                    </h:panelGrid>  
+                </p:tab>  
+                <p:tab title="Cartão de Crédito">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Bandeira"/><h:outputText value="Valor"/>
+                        <p:graphicImage value="/imagem/visa.jpg" width="80" height="40"/>  
+                        <h:inputText value="#{compraController.formaPagamento.valorVisa}" id="visa"/>
+                        <p:graphicImage value="/imagem/america.jpg" width="80" height="40" />  
+                        <h:inputText value="#{compraController.formaPagamento.valorAmerica}" id="america"/>
+                        <p:graphicImage value="/imagem/master.jpg" width="80" height="40"/>  
+                        <h:inputText value="#{compraController.formaPagamento.valorMaster}" id="master"/>
+                        <h:outputText value="Utilizar veiculo usado?"/>
+                        <h:inputText value="#{compraController.formaPagamento.valorCarroUsadoCredito}"/>
+                        <p:commandButton value="Verificar Crédito" type="button"  
+                                         onclick="dlg1.show();" />
+                    </h:panelGrid>  
+                </p:tab>  
+                <p:tab title="A prazo">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <h:outputText value="Entrada"/><h:inputText id="valor" value="#{compraController.formaPagamento.entrada}"/> 
+                        <h:outputText value="Utilizar veiculo usado?"/>
+                        <h:inputText value="#{compraController.formaPagamento.valorCarroUsadoPrazo}"/>
+                        <h:outputText value="Quantidade de prestações"/>
+                        <h:inputText id="prestacoes" value="#{compraController.formaPagamento.qtPrestacoes}" />  
+                    </h:panelGrid>  
+                </p:tab> 
+
+            </p:accordionPanel>  
+            <p:dialog id="picture" widgetVar="dlg1" header="Verificando crédito" width="350" height="150" 
+                      resizable="false" showEffect="clip" hideEffect="clip" onShow="start();">
+                <h:outputText value="Verificando Crédito com a operadora de cartão"/>
+                <p:progressBar widgetVar="pbClient" style="width:300px" oncomplete="dlg1.hide();"/> 
+                <h:outputText id="mensagem" value=""/>
+            </p:dialog>  
+
+        
+
+
+
+
+
+
+
+
+    </h:body>
+</html>
+

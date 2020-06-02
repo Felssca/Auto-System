@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+
+
+    </head>
+
+    <h:body>
+
+        <ui:composition>
+            <h:form>
+
+                <table border="0">
+                  
+                    <tr>
+
+                        <p:panel>
+                            <p:toolbar >  
+                                <p:toolbarGroup align="left">  
+                                    <p:commandButton type="push" value="Clientes" image="ui-icon ui-icon-person"
+                                                     action="#{clienteController.listarClientes()}" ajax="false"/>  
+                                    <p:divider />
+                                    <p:commandButton type="push" value="Veiculos" image="ui-icon ui-icon-key"
+                                                     action="#{estoqueController.listarEstoque()}" ajax="false"/>  
+
+                                    <p:divider />  
+                                    <p:commandButton type="push" value="Vendas" image="ui-icon ui-icon-cart"
+                                                     action="#{historicoVendas.listarVendas()}" ajax="false"    />  
+
+                                    <p:divider />  
+                                    <p:commandButton type="push" value="Relatorios" image="ui-icon ui-icon-note"
+                                                     action="#{estoqueController.listarEstoque()}" ajax="false"/>  
+
+                                    <p:divider />  
+                                   
+                                    <p:commandButton type="push" value="Log so Sistema" image="ui-icon ui-icon-note"
+                                                     action="#{estoqueController.listarEstoque()}" ajax="false"/>  
+
+                                 <p:divider />  
+                                </p:toolbarGroup>  
+
+                                <p:divider />  
+
+                                <p:toolbarGroup align="left" >  
+                                    <p:menuButton value="Usuario" >  
+                                        <p:menuitem value="Sair" url="http://www.primefaces.org" />  
+                                        <p:menuitem value="Logar"  
+                                                    url="http://www.primefaces.org/showcase" />  
+                                       
+                                    </p:menuButton>  
+                                </p:toolbarGroup>  
+
+                            </p:toolbar>  
+                          
+
+                        </p:panel>
+                    </tr>
+                    <tr style="background-color:#fefeff " >
+                        <p:panel style="background-color: #fefeff;width: 100%" >
+                          <h:graphicImage value="/imagem/topo-1.png"/>
+                          </p:panel>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

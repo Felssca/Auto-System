@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <p:growl id="alerta"  />
+        <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+
+        <p:dialog modal="true" widgetVar="statusDialog" header="Status"   
+                  draggable="false" closable="false">  
+            <p:graphicImage value="imagem/img_carregando.gif" />  
+        </p:dialog>  
+        <h:form prependId="false">
+            <p:dialog header="Detalhes do veiculo" widgetVar="carDialog" resizable="false"  
+                      width="600" showEffect="explode">  
+
+                <p:tabView dynamic="true" cache="false" tabChangeListener="#{estoqueController.onTabChange}" 
+                           onTabChangeUpdate="historicoPainel">       
+
+                    <p:tab title="Detalhes" id="detalhes"> 
+                        <h:panelGrid  columns="2" cellpadding="2"  id="display" columnClasses="grid_coluna_detalhes,grid_coluna_detalhes2 " >  
+                            <f:facet name="header">  
+                                <ui:include src="slideShow.xhtml"/> 
+                                <h:outputText value="R$:#{estoqueController.estoque.valor}" />
+                            </f:facet>  
+
+                            <h:outputText value="Model:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.modelo}" /> 
+                            <h:outputText value="Cor:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.cor}" /> 
+                            <h:outputText value="Motor:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.motor}" /> 
+                            <h:outputText value="Fabricação:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.dtFabricacao}" > 
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Usado:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.usado}" /> 
+                            <h:outputText value="Combustivel:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.combustivel}" /> 
+                            <h:outputText value="Portas:" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.portas}" /> 
+                            <h:outputText value="Tipo" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.tipoModelo}" /> 
+                            <h:outputText value="Descrição" />  
+                            <h:outputText value="#{estoqueController.estoque.idVeiculo.descricao}" />                            
+
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Historico" id="historico"> 
+                        <p:outputPanel id="historicoPainel">
+                            <ui:include src="veiculoHistorico.xhtml"/>
+                        </p:outputPanel>
+
+                    </p:tab>
+                    <p:tab title="Revisões" id="revisoes"> 
+                        <p:outputPanel id="revisoesPainel">
+                            <ui:include src="revisoes.xhtml"/>
+                        </p:outputPanel>
+
+                    </p:tab>
+                </p:tabView>
+            </p:dialog>  
+        </h:form>
+
+    </h:body>
+</html>
+

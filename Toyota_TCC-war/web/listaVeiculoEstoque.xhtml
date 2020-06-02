@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:p="http://primefaces.prime.com.tr/ui"> 
+    <h:head>
+        <title>Toyota</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/toyotaTemplate.xhtml">
+            <ui:define name="conteudo">       
+                <f:view>
+                 
+                    <h1 align="LEFT" style="background-color: #fefeff"> <img src="imagem/veiculosLetras.png" /></h1>
+                    <h:form prependId="false">
+                        <p:dataTable value="#{estoqueController.estoqueLista}" var="item" 
+                                     onselectComplete="carDialog.show()" selection="#{estoqueController.estoque}"
+                                     selectionMode="single" update="display,historicoVeiculo,rev" styleClass="tabela"
+                                     rowStyleClass="#{item.idVeiculo.usado==true?'red':null }">
+
+                            <p:column sortBy="#{item.idVeiculo.modelo}" filterBy="#{item.idVeiculo.modelo}">
+                                <f:facet name="header">
+                                    <h:outputText value="Modelo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.modelo}"/>
+                            </p:column>
+                            <p:column sortBy="#{item.idVeiculo.dtFabricacao}">
+                                <f:facet name="header">
+                                    <h:outputText value="Data de Fabricacao"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.dtFabricacao}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Motor"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.motor}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Novo/Usado"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.usado}">
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo de combustivel"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.combustivel}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="QtPortas"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.portas}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tipo do veiculo"/>
+                                </f:facet>
+                                <h:outputText value="#{item.idVeiculo.tipoModelo}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="QT Disponível"/>
+                                </f:facet>
+                                <h:outputText value="#{item.qtdDisponivel}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor R$"/>
+                                </f:facet>
+                                <h:outputText value="#{item.valor}">
+                                    <f:convertNumber pattern="#,000"/>
+                                </h:outputText>
+
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Comprar"/>
+                                </f:facet>
+
+                                <h:commandButton id="compra" value="Comprar" type="submit" action="#{compraController.comprarVeiculo()}">
+                                    <f:setPropertyActionListener target="#{compraController.estoque}" value="#{item}" />
+                                </h:commandButton>
+
+                            </p:column>
+
+                        </p:dataTable>
+
+                        <ui:include src="painelEstoque.xhtml"/>
+                    </h:form>  
+                </f:view>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

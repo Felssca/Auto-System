@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="index.xhtml" x="164" y="197" zoom="true"/>
+        <Node id="clienteCompra.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="pagamento.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="slideShow.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="template/topoTemplate.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="central.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="historicoVenda.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="clientePesquisa.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="painelEstoque.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="listaVeiculoEstoque.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="template/bottomTemplate.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="template/toyotaTemplate.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="veiculoHistorico.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="revisoes.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="compraVeiculo.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="historico.xhtml" x="900" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

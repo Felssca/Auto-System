@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Toyota</title>
+    </h:head>
+    <h:body>
+<p:growl id="alerta5" life="0" />
+
+        <h:form>
+            <h:panelGrid  columns="2" cellpadding="4" id="rev">
+                <p:dataList value="#{estoqueController.historicoRevLista}" var="car" type="ordered"
+                            paginator="true" rows="4" effectSpeed="fast"  
+                            paginatorTemplate="{PreviousPageLink} {CurrentPageReport} {NextPageLink} {RowsPerPageDropdown}"  
+                            rowsPerPageTemplate="5,10,15">
+                    <p:column>
+                        <b>Revisão:KM:</b>"#{car.km}"<br></br>
+                        <b>Data da Revisão:</b>"#{car.dataRevisao}"<br></br>
+                        <b>Valor da Revisão R$:</b>"#{car.valor}"<br></br>
+                        <b>Itens trocados:</b>#{car.detalhes}
+                    </p:column>
+                    <p:separator />
+                </p:dataList>  
+
+            </h:panelGrid>
+
+
+        </h:form>
+    </h:body>
+</html>
+

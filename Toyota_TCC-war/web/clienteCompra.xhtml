@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"> 
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <p:growl id="alerta5" life="0" />
+            <p:dataTable value="#{compraController.clienteLista}" var="item" selection="#{compraController.cliente}"
+                         paginator="true" rows="10" onRowSelectComplete="#{compraController.cliente}" >
+                <p:column selectionMode="single" />
+                <p:column headerText="Nome" sortBy="#{item.nome}" filterBy="#{item.nome}">  
+                    <h:outputText value="#{item.nome} #{item.sobrenome}" />  
+                </p:column> 
+                <p:column headerText="CPF" sortBy="#{item.cpf}" filterBy="#{item.cpf}">  
+                    <h:outputText value="#{item.cpf}" />  
+                </p:column>  
+                <p:column headerText="RG" sortBy="#{item.rg}" filterBy="#{item.rg}">  
+                    <h:outputText value="#{item.rg}" />  
+                </p:column>  
+
+            </p:dataTable>
+
+    </h:body>
+</html>
+

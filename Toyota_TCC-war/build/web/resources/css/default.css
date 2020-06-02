@@ -1,0 +1,129 @@
+body {
+    background-color: #E5E5E5;
+    font-size: 10px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+a:link, a:visited {
+  color: #045491;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  font-weight : bold;
+  text-decoration : underline;
+}
+form th, td th {
+    font-size: x-small;
+    color: #4e6a71;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    letter-spacing: 3px;
+    text-align: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    background-color: #b2d5d6;
+}
+
+td {
+    vertical-align: top;
+    padding-bottom: 8px;
+    font-size: small;
+}
+
+form td, td td {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-color: #b2d5d6;
+    border-bottom-color: #b2d5d6;
+    border-left-color: #b2d5d6;
+    border-right-color: #b2d5d6;
+    vertical-align: baseline;
+    padding-bottom: 0px;
+}
+
+tr.jsfcrud_odd_row {
+    background-color: #fefeff;
+    color: #4e6a71;
+}
+
+
+tr.jsfcrud_even_row {
+    background-color: #eff5fa;
+    color: #4e6a71;
+}
+
+#busyImage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+    .grid_coluna1 {  
+        text-align: left;
+        width:150px; 
+        background-color: #D1D1D1;
+        
+        border: 0;
+    }  
+      
+    .grid_coluna2 {  
+        text-align: left; 
+        border: 0;
+    }  
+    .grid_coluna3 {  
+        border: 0;
+        
+        
+    }  
+    .grid_coluna_historico1 {  
+        text-align: left; 
+        background-color: #D1D1D1;
+        width:130px;
+        border: 0;
+    }  
+    .grid_coluna_historico2 {  
+        text-align: left; 
+        background-color: #E8E8E8;
+         width:350px;
+        border: 0;
+    }  
+    .grid_coluna_detalhes {  
+        text-align: left; 
+        background-color: #D1D1D1;
+        border: 0;
+    }  
+    .grid_coluna_detalhes2 {  
+        text-align: left; 
+        background-color: #E8E8E8;
+        border: 0;
+    }  
+
+

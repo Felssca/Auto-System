@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:p="http://primefaces.prime.com.tr/ui"> 
+
+    <h:body>
+        <ui:composition template="/template/toyotaTemplate.xhtml">
+            <ui:define name="conteudo">
+                <p:growl id="alerta"  />
+
+                <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" onerror="statusDialog.hide();"/>  
+
+                <p:dialog modal="true" widgetVar="statusDialog" header="Status Cliente"   
+                          draggable="false" closable="true" position="center" >  
+                    <p:graphicImage value="imagem/img_carregando.gif" height="120px" width="120" />  
+                </p:dialog>  
+
+
+                <h:form id="tabelaCli">
+
+                        <h1 align="LEFT" style="background-color: #fefeff"> <img src="imagem/clienteLetras.png" />
+                    </h1>
+                    <p:commandButton update="display" widgetVar="clienteDialog"  value="Inserir Novo Cliente" oncomplete="clienteDialog.show()"  
+                                     image="ui-icon ui-icon-plusthick"/> 
+                    <p:panel id="painelTabela">
+
+                        <p:dataTable var="cliente" value="#{clienteController.clienteLista}"  
+                                     emptyMessage="Nenhum nome encontrado" id="tabelaClientes" paginator="true" rows="10" rowEditListener="#{clienteController.onEditRow}"
+                                     onRowEditUpdate="clienteMensagem.show()" >  
+
+                            <p:column headerText="Nome" sortBy="#{cliente.nome}" filterBy="#{cliente.nome}">
+                                <p:cellEditor  >  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.nome}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{cliente.nome}" style="width:100%"/>  
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.nome}" />  
+                                </p:cellEditor>  
+                            </p:column> 
+                            <p:column headerText="Sobrenome" sortBy="#{cliente.sobrenome}" filterBy="#{cliente.sobrenome}">
+                                <p:cellEditor >  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{cliente.sobrenome}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{cliente.sobrenome}" style="width:100%"/>  
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.sobrenome}" />  
+                                </p:cellEditor>
+                            </p:column> 
+                            <p:column headerText="CPF" sortBy="#{cliente.cpf}" filterBy="#{cliente.cpf}">
+                                <p:cellEditor>  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{cliente.cpf}" /> 
+                                    </f:facet>  
+                                    <f:facet name="input"> 
+                                        <p:inputMask   mask="999.999.999-99"  value="#{cliente.cpf}" required="true"/>
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.cpf}" /> 
+                                </p:cellEditor>
+                            </p:column>  
+
+                            <p:column  headerText="RG" sortBy="#{cliente.rg}" filterBy="#{cliente.rg}">
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.rg}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputMask   mask="999.999-9" value="#{cliente.rg}"  title="RG" required="true"/>
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.rg}" />  
+                                </p:cellEditor>  
+                            </p:column>  
+                            <p:column  headerText="Telefone Residencial">  
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.telefoneRes}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputMask  mask="(99) 999-99999" value="#{cliente.telefoneRes}"/>  
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.telefoneRes}" />  
+                                </p:cellEditor>  
+                            </p:column>  
+                            <p:column 
+                                headerText="Telefone Celular"> 
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.telefoneCel}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputMask  mask="(99) 999-99999" value="#{cliente.telefoneCel}"/>
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.telefoneCel}" />  
+                                </p:cellEditor>  
+
+                            </p:column>  
+                            <p:column 
+                                headerText="Telefone Comercial"> 
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.telefoneComercial}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputMask  mask="(99) 999-99999" value="#{cliente.telefoneComercial}"/>
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.telefoneComercial}" />  
+                                </p:cellEditor>  
+
+                            </p:column> 
+                            <p:column 
+                                headerText="Aniversario"> 
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.dtAniversario}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:calendar  value="#{cliente.dtAniversario}" showButtonPanel="true" 
+                                                     navigator="true"  requiredMessage="Aniversário obrigatório"/>  
+
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.dtAniversario}" />  
+                                </p:cellEditor>  
+
+                            </p:column> 
+                            <p:column 
+                                headerText="Estado"> 
+                                <p:cellEditor>  
+                                    <f:facet name="output" >  
+                                        <h:outputText value="#{cliente.cidade}" >
+
+                                        </h:outputText>
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <h:selectOneMenu value="#{cliente.cidade}" style="font-size:smaller;width:50px">  
+                                            <f:selectItems value="#{clienteController.estadoLista}"  
+                                                           var="estado"   
+                                                           itemLabel="#{estado.nomEstado}-#{estado.sglEstado}"  
+                                                           itemValue="#{estado.nomEstado}-#{estado.sglEstado}"  />  
+                                        </h:selectOneMenu>  
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.cidade}" />  
+                                </p:cellEditor>  
+
+                            </p:column> 
+                            <p:column headerText="Profissão">
+                                <p:cellEditor >  
+                                    <f:facet name="output">  
+                                        <h:outputText value="#{cliente.profissao}" />  
+                                    </f:facet>  
+                                    <f:facet name="input">  
+                                        <p:inputText value="#{cliente.profissao}" style="width:100%"/>  
+                                    </f:facet>  
+                                    <h:outputText value="#{cliente.profissao}" />  
+                                </p:cellEditor>
+                            </p:column> 
+                            <p:column 
+                                headerText="Editar">  
+                                <p:rowEditor />  
+                            </p:column> 
+
+
+                            <f:facet name="footer">  
+                                No total existem #{fn:length(clienteController.clienteLista)} clientes cadastrados.  
+                            </f:facet>  
+
+                        </p:dataTable>      
+
+                    </p:panel>
+                </h:form>
+                <h:form>
+                    <p:dialog header="Cadastrar Cliênte" widgetVar="clienteDialog" resizable="true"  
+                              width="550" showEffect="explode" hideEffect="clip" modal="true" >    
+
+                        <h:panelGrid columns="3" width="100%"  id="grid" columnClasses="grid_coluna1,grid_coluna2,grid_coluna3" >
+
+                            <h:outputLabel value="Nome:" for="nome" />
+                            <p:inputText id="nome"  title="Nome" value="#{clienteController.cliente.nome}"  maxlength="45"
+                                         required="true" requiredMessage="Nome obrigatório"/><p:message for="nome" />  
+
+                            <h:outputLabel value="Sobrenome:" for="sobrenome" />
+                            <p:inputText id="sobrenome" value="#{clienteController.cliente.sobrenome}" title="Sobrenome"  maxlength="45"
+                                         required="true" requiredMessage="Sobrenome obrigatório"/>
+                            <p:message for="sobrenome"  />  
+
+                            <h:outputLabel value="RG" for="rg" />
+                            <p:inputMask id="rg"  mask="999.999-9" value="#{clienteController.cliente.rg}"  title="RG" required="true"
+                                         requiredMessage="RG obrigatório"/>
+                            <p:message for="rg" /> 
+
+                            <h:outputLabel value="CPF" for="cpf" />
+                            <p:inputMask  id="cpf"  mask="999.999.999-99"  value="#{clienteController.cliente.cpf}" required="true"
+                                          requiredMessage="CPF obrigatório"/>
+                            <p:message for="cpf" /> 
+
+                            <h:outputLabel value="Telefone Celular:" for="telefoneCel" />
+                            <p:inputMask id="telefoneCel" mask="(99) 999-99999" value="#{clienteController.cliente.telefoneCel}"  title="TelefoneCel" />
+                            <p:message for="telefoneCel" /> 
+
+                            <h:outputLabel value="Telefone Comercial:" for="telefoneComercial" />
+                            <p:inputMask id="telefoneComercial" mask="(99) 999-99999" value="#{clienteController.cliente.telefoneComercial}" />
+                            <p:message for="telefoneComercial" /> 
+
+                            <h:outputLabel value="Telefone Residencial:" for="telefoneRes" />
+                            <p:inputMask id="telefoneRes" mask="(99) 999-99999" value="#{clienteController.cliente.telefoneRes}" />
+                            <p:message for="telefoneRes" /> 
+
+                            <h:outputLabel value="Profissao:" for="profissao" />
+                            <p:inputText id="profissao" value="#{clienteController.cliente.profissao}" title="Profissao" />
+                            <p:message for="profissao" /> 
+
+
+                            <h:outputLabel value="Aniversario:" for="dtAniversario" />
+                            <p:calendar id="dtAniversario" value="#{clienteController.cliente.dtAniversario}" showButtonPanel="true" 
+                                        navigator="true" required="true"  requiredMessage="Aniversário obrigatório"/>  
+                            <p:message for="dtAniversario" /> 
+
+
+
+                            <h:outputLabel value="Cep:" for="cep" />
+                            <p:inputMask id="cep"  mask="99999-999" value="#{clienteController.cliente.cep}"  title="CEP" required="true"
+                                         requiredMessage="CEP obrigatório"/>
+                            <p:message for="cep" /> 
+
+                            <h:outputLabel value="Estado:" for="cidade" id="cidade" />
+                            <h:selectOneMenu value="#{clienteController.cliente.cidade}">  
+                                <f:selectItems value="#{clienteController.estadoLista}"  
+                                               var="estado"   
+                                               itemLabel="#{estado.nomEstado}-#{estado.sglEstado}"  
+                                               itemValue="#{estado.nomEstado}-#{estado.sglEstado}"  />  
+                            </h:selectOneMenu>  
+                            <p:message for="telefoneRes"  /> 
+
+
+                            <h:outputLabel value="Endereço:" for="endereco" />
+                            <p:inputText  id="endereco" value="#{clienteController.cliente.endereco}" title="Endereco" 
+                                          required="true"
+                                          requiredMessage="Endereço obrigatório"/>  
+                            <p:message for="endereco"  /> 
+
+
+
+
+                            <p:commandButton value="Adicionar" 
+                                             action="#{clienteController.inserirCliente()}" immediate="false" type="submit"
+                                             image="ui-icon-disk" process="@form" onsuccess="clienteDialog.hide();sucesso.show();" 
+                                             update="tabelaCli:painelTabela:tabelaClientes" ajax="true"/>
+
+                        </h:panelGrid>  
+
+
+
+                    </p:dialog>
+                    <p:dialog modal="true" widgetVar="sucesso" header="Status Cliente"   
+                              draggable="true" closable="true" position="center">  
+                        <h:outputText value="Cliente Cadastrado com Sucesso"/> 
+                    </p:dialog>  
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

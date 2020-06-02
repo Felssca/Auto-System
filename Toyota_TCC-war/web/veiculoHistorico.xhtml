@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <h:body>
+        <p:growl id="alerta3" life="0" />
+
+        <h:form>
+
+
+            <p:dataGrid value="#{estoqueController.historicoLista}" var="item" columns="1" 
+                        rows="2" paginator="true" effect="true"  
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                        rowsPerPageTemplate="2,4,6,8">  
+                <p:column headerText="Prorietario">
+                    <p:panel header="#{item.proprietario}" style="text-align:center">
+                        <h:panelGrid columns="2" columnClasses="grid_coluna_historico1 ,grid_coluna_historico2" id="historicoVeiculo" >   
+                            <h:outputText value="Data Entrada" />
+                            <h:outputText value="#{item.dtEntrada}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Data Saida"/>
+                            <h:outputText value="#{item.dtSaida}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="Local de Venda"/>
+                            <h:outputText value="#{item.localVenda}"/>
+                            <h:outputText value="Multas Pendentes"/>
+                            <h:outputText value="#{item.multas}"/>
+                            <h:outputText value="Sinistro"/>
+                            <h:outputText value="#{item.sinistro}"/>
+                            <h:outputText value="Estado"/>
+                            <h:outputText value="#{item.estado}"/>
+                            <h:outputText value="IPVA"/>
+                            <h:outputText value="#{item.ipva}"/>
+                            <h:outputText value="Km Rodados"/>
+                            <h:outputText value="#{item.km}"/>
+                        </h:panelGrid>
+
+
+
+                    </p:panel>
+                </p:column>
+
+            </p:dataGrid>
+
+
+
+        </h:form>
+    </h:body>
+</html>
+

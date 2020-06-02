@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"> 
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/toyotaTemplate.xhtml">
+            <ui:define name="conteudo">
+                <p:growl id="alerta"/>
+                <h:form>  
+
+                    <p:wizard widgetVar="wiz"  
+                              flowListener="#{compraController.onFlowProcess}">  
+
+                        <p:tab id="veiculo" title="Veiculo">  
+
+
+                            <p:panel header="Detalhes do veiculo" >  
+                                <h:panelGrid  columns="2" cellpadding="2"> 
+                                    <f:facet name="header" >  
+                                        <h:graphicImage value ="/imagem/imagemCarros/#{compraController.veiculo.modelo}.jpg" width="500" height="300"/>
+                                    </f:facet>  
+                                    <h:outputText value="Modelo:" />  
+                                    <h:outputText value="#{compraController.veiculo.modelo}" /> 
+                                    <h:outputText value="Cor:" />  
+                                    <h:outputText value="#{compraController.veiculo.cor}" /> 
+                                    <h:outputText value="Motor:" />  
+                                    <h:outputText value="#{compraController.veiculo.motor}" /> 
+                                    <h:outputText value="Data Fabricação:" />  
+                                    <h:outputText value="#{compraController.veiculo.dtFabricacao}" /> 
+                                    <h:outputText value="Valor:" />  
+                                    <h:outputText value="#{compraController.estoque.valor}" /> 
+                                </h:panelGrid>
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="cliente" title="Cliente">  
+                            <p:panel header="Seleção de Cliente">    
+                                <ui:include src="clienteCompra.xhtml"/>
+
+
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="pagamento" title="Pagamento">  
+                            <p:panel header="Forma de pagamento" >  
+                                <ui:include src="pagamento.xhtml"/>
+
+
+
+                            </p:panel>  
+                        </p:tab>  
+
+                        <p:tab id="confirmacao" title="Confirmação"> 
+                            <h:panelGrid  columns="4" cellpadding="0" >
+                                <p:panel header="Veiculo">
+                                    <h:panelGrid  columns="2" cellpadding="2" > 
+                                        <f:facet name="header" >  
+                                            <h:graphicImage value ="/imagem/imagemCarros/#{compraController.veiculo.modelo}.jpg" width="500" height="300"/>
+                                        </f:facet>  
+                                        <h:outputText value="Modelo:" />  
+                                        <h:outputText value="#{compraController.veiculo.modelo}" /> 
+                                        <h:outputText value="Cor:" />  
+                                        <h:outputText value="#{compraController.veiculo.cor}" /> 
+                                        <h:outputText value="Motor:" />  
+                                        <h:outputText value="#{compraController.veiculo.motor}" /> 
+                                        <h:outputText value="Data Fabricação:" />  
+                                        <h:outputText value="#{compraController.veiculo.dtFabricacao}" /> 
+                                        <h:outputText value="Valor:" />  
+                                        <h:outputText value="#{compraController.estoque.valor}" /> 
+                                    </h:panelGrid>
+                                </p:panel>
+                                <p:panel header="Dados do Cliente">
+                                    <h:panelGrid  columns="2" cellpadding="2" > 
+                                        <h:outputText value="Nome:" />  
+                                        <h:outputText value="#{compraController.cliente.nome} #{compraController.cliente.sobrenome}" />  
+                                        <h:outputText value="CPF:" />  
+                                        <h:outputText value="#{compraController.cliente.cpf}" /> 
+                                        <h:outputText value="RG:" />  
+                                        <h:outputText value="#{compraController.cliente.rg}" /> 
+                                        <h:outputText value="Data Nacimento:" />  
+                                        <h:outputText value="#{compraController.cliente.dtAniversario}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                        <h:outputText value="Telefone Res:" />  
+                                        <h:outputText value="#{compraController.cliente.telefoneRes}" /> 
+                                        <h:outputText value="Telefone Celular:" />  
+                                        <h:outputText value="#{compraController.cliente.telefoneCel}" /> 
+                                        <h:outputText value="Telefone Comercial:" />  
+                                        <h:outputText value="#{compraController.cliente.telefoneComercial}" /> 
+                                        <h:outputText value="Cidade" />  
+                                        <h:outputText value="#{compraController.cliente.cep}" /> 
+                                        <h:outputText value="CEP" />  
+                                        <h:outputText value="#{compraController.cliente.cep}" /> 
+                                        <h:outputText value="Endereço:" />  
+                                        <h:outputText value="#{compraController.cliente.endereco}" /> 
+
+
+                                    </h:panelGrid>
+                                </p:panel>
+                                <p:panel header="Forma de Pagamento">
+                                    <p:panel header="A vista">
+                                        <h:panelGrid  columns="2" cellpadding="2" title="A vista"> 
+                                            <h:outputText value="Valor a vista" />  
+                                            <h:outputText value="#{compraController.formaPagamento.valor}">
+                                            </h:outputText>
+                                            <h:outputText value="Carro usado" />  
+                                            <h:outputText value="#{compraController.formaPagamento.valorCarroUsado}" />
+                                        </h:panelGrid>
+                                    </p:panel>
+                                    <p:panel header="Cartão de crédito">
+                                        <h:panelGrid  columns="2" cellpadding="2" title="Cartão de Crédito"> 
+                                            <h:outputText value="Bandeira " /> <h:outputText value="Valor R$ " /> 
+                                            <h:outputText value="Pagameto Visa " /> 
+                                            <h:outputText value="#{compraController.formaPagamento.valorVisa}" /> 
+                                            <h:outputText value="Pagameto Mastercard " />  
+                                            <h:outputText value="#{compraController.formaPagamento.valorMaster}" /> 
+                                            <h:outputText value="Pagamento America Express " /> 
+                                            <h:outputText value="#{compraController.formaPagamento.valorAmerica}" /> 
+
+
+                                        </h:panelGrid>
+                                    </p:panel>
+                                    <p:panel header="A prazo">
+                                        <h:panelGrid  columns="2" cellpadding="2" title=" A prazo"> 
+                                            <h:outputText value="Entrada " />  
+                                            <h:outputText value="#{compraController.formaPagamento.entrada}" /> 
+                                            <h:outputText value="Numero de Prestações " />  
+                                            <h:outputText value="#{compraController.formaPagamento.qtPrestacoes}" /> 
+
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:panel>
+                                <p:panel header="Dados do Vendedor">
+                                    <h:panelGrid  columns="2" cellpadding="2" >
+                                        <f:facet name="header" >  
+                                            <h:graphicImage value ="/imagem/#{compraController.usuario.login}.jpg"/>
+                                        </f:facet>  
+                                        <h:outputText value="Nome:" />  
+                                        <h:outputText value="#{compraController.usuario.nome} #{compraController.usuario.sorenome}"/> 
+                                        <h:outputText value="Cargo" />  
+                                        <h:outputText value="#{compraController.usuario.cargo}" /> 
+                                    </h:panelGrid>
+                                </p:panel>
+                                <p:commandButton value="Finalizar Compra"   
+                                                 action="#{compraController.confirmarCompra}" ajax="false"  onsuccess=""/> 
+                            </h:panelGrid>
+                        </p:tab>
+
+                    </p:wizard>  
+
+                    <p:ajaxStatus>  
+                        <f:facet name="start">  
+                            <h:graphicImage value="../design/ajaxloading.gif" />  
+                        </f:facet>  
+
+                        <f:facet name="complete">  
+                            <h:outputText value="" />  
+                        </f:facet>  
+                    </p:ajaxStatus>  
+
+                </h:form>  
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
